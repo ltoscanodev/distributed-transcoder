@@ -1,2 +1,2 @@
 # Distributed Transcoder
-Transcodificador de vídeo distribuído
+Serviço de transcodificação de vídeo distribuída
