@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    
-    <groupId>dev.ltoscano</groupId>
-    <artifactId>distributed-transcoder-svc</artifactId>
-    <version>1.0.0</version>
-    <packaging>war</packaging>
-    <name>Distributed Transcoder Service</name>
-    <description>Serviço de transcodificação de vídeo distribuída</description>
     
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -17,34 +11,33 @@
         <version>2.4.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-	
+    
+    <name>distributed-transcoder-svc</name>
+    <description>Serviço de transcodificação de vídeo distribuída</description>
+    
+    <groupId>dev.ltoscano</groupId>
+    <artifactId>distributed-transcoder-svc</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+    
     <properties>
         <java.version>11</java.version>
-        <spring.version>2.3.3.RELEASE</spring.version>
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Web -->
+        <!-- Transcoder Library -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring.version}</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>transcoder-lib</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
         </dependency>
-
-        <!-- Spring Boot Tomcat -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <version>${spring.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        
-        <!-- Spring Boot Test -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <version>${spring.version}</version>
-            <scope>test</scope>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>transcoder-lib</artifactId>
+            <version>${project.version}</version>
+            <classifier>classes</classifier>
+            <type>jar</type>
         </dependency>
     </dependencies>
 
@@ -53,6 +46,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <mainClass>dev.ltoscano.transcoder.DistributedTranscoderServiceApplication</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

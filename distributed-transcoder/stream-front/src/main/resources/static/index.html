@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.min-4.5.2.css" />
+        <link rel="stylesheet" href="css/stream.css" />
+
+        <script src="js/jquery.min-3.5.1.js"></script>
+        <script src="js/bootstrap.bundle.min-4.5.3.js"></script>
+        <script src="js/stream.js"></script>
+        
+        <title>Video Stream</title>
+    </head>
+
+    <body onload="playerInit()">
+        <div class="center">
+            <video id="player" height="600" width="800" controls>
+                <source src="http://127.0.0.1:8081/stream/getStream?quality=240p" type="video/mp4">
+            </video>
+
+            <div class="dropdown center-horizontal">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Quality (<span id="pp"></span>)</button>
+
+                <ul class="dropdown-menu center-text">
+                    <li><a href="#" onclick="changeStreamQuality('4320p')">8K</a></li>
+                    <li><a href="#" onclick="changeStreamQuality('2160p')">4K</a></li>
+                    <li><a href="#" onclick="changeStreamQuality('1080p')">FULL HD</a></li>
+                    <li><a href="#" onclick="changeStreamQuality('720p')">HD</a></li>
+                    <li><a href="#" onclick="changeStreamQuality('480p')">VGA</a></li>
+                    <li><a href="#" onclick="changeStreamQuality('240p')">QVGA</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
